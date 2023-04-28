@@ -1,3 +1,4 @@
+// 아기 사자 버전
 import React, {useState} from "react";
 
 const Diary = () => {
@@ -24,6 +25,7 @@ const Diary = () => {
   const reset = () => {
     setTitle("");
     setContent("");
+
   }
 
 
@@ -33,9 +35,61 @@ const Diary = () => {
       <br />
       <textarea name="content" placeholder="내용을 입력해주세요" onChange={handleContent} value={content}/>
       <br />
-      <button onClick={reset}></button>
+      <button onClick={reset}>초기화</button>
       <br />
-      <button onClick={handleClick}>입력 완료 </button>
+      <button onClick={handleClick}>입력 완료</button>
+    </div>
+  );
+
+}
+export default Diary;
+
+
+
+
+// 어른 사자 객체로 접근하는 거 사실 아직도 이해가 안 가긴 합니다. . . ㅠ
+import React, {useState} from "react";
+
+const Diary = () => {
+  // 이벤트 핸들러부터 state까지 모두 스스로 작성해보시길 바랍니다!
+  // 과연 어떤 state를 생성해주어야하고, 또 어떤 이벤트 핸들러가 필요할까요?
+  // 실습으로 다뤘던 두 문제를 참고하면 충분히 해결할 수 있으실거라 생각합니다!
+
+  const [input, setInput] = useState({
+    title : "",
+    content : ""
+  })
+
+  const handleTitle = (e) => {
+    setInput({...input, title : e.target.value})
+
+  }
+  const handleContent = (e) => {
+    setInput({...input, content : e.target.value})
+
+  }
+
+  const handleClick = () => {
+    alert("제목:" + input.title + "\n내용:" + input.content);
+  }
+
+  const reset = () => {
+    setInput({
+      title : "",
+      content : ""
+    })
+  }
+
+
+  return (
+    <div className="diary">
+      <input name="subject" placeholder="제목을 입력해주세요" onChange={handleTitle} value={input.title}/>
+      <br />
+      <textarea name="content" placeholder="내용을 입력해주세요" onChange={handleContent} value={input.content}/>
+      <br />
+      <button onClick={reset}>초기화</button>
+      <br />
+      <button onClick={handleClick}>입력 완료</button>
     </div>
   );
 
